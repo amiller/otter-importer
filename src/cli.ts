@@ -4,6 +4,7 @@ import { getConfig, type AppConfig } from "./config.ts";
 import { resolveCookie, storeCookie } from "./cookie.ts";
 import { Store } from "./db.ts";
 import { OtterClient } from "./otter.ts";
+import { OtterViaOauth3, type OtterSource } from "./otter-oauth3.ts";
 import { parseOtterTxt, transcriptText } from "./transcript.ts";
 import { authStatus, createDelegation, type TcOptions } from "./tc.ts";
 import { uploadPending } from "./upload.ts";
@@ -152,7 +153,16 @@ async function main(): Promise<void> {
   }
 }
 
-function makeClient(config: AppConfig, args: ParsedArgs): OtterClient {
+// Source = the cookie path (OtterClient) OR, when an OAuth3 node is given, the SDK
+// path (OtterViaOauth3) which holds only a scoped token, never the Otter cookie.
+function makeClient(config: AppConfig, args: ParsedArgs): OtterSource {
+  const node = stringFlag(args, "node") ?? process.env.OAUTH3_NODE;
+  if (node) {
+    return new OtterViaOauth3(node, {
+      token: stringFlag(args, "token") ?? process.env.OAUTH3_TOKEN,
+      subject: stringFlag(args, "subject"),
+    });
+  }
   const cookie = resolveCookie(config.cookiePath, {
     sessionid: stringFlag(args, "sessionid"),
     csrftoken: stringFlag(args, "csrftoken"),

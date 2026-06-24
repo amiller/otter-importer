@@ -11,7 +11,8 @@
     "test": "bun test"
   },
   "dependencies": {
-    "fflate": "^0.8.2"
+    "fflate": "^0.8.2",
+    "oauth3-sdk": "file:../teleport/oauth3-sdk"
   },
   "devDependencies": {
     "@types/bun": "^1.1.0",
