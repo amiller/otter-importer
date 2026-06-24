@@ -234,7 +234,15 @@ Usage:
   otter-importer upload [--limit n] [--dry-run] [--profile name] [--host url]
   otter-importer doctor
 
-Cookie: from --sessionid/--csrftoken, OTTER_SESSIONID/OTTER_CSRFTOKEN, or ${"~/.otter-importer/cookie.json"}.
+Token-only (delegated, no Otter cookie — the OAuth3 way):
+  Pass --node <instance url> (or set OAUTH3_NODE) to read through an OAuth3 instance
+  with a scoped token instead of the Otter cookie. Options:
+    --node <url> / OAUTH3_NODE     OAuth3 instance to read through
+    --token <t>  / OAUTH3_TOKEN    scoped read token (omit to run the approval handshake)
+    --subject <s>                  attribution carried by the token
+  e.g.  OAUTH3_NODE=https://my-oauth3 OAUTH3_TOKEN=<token> otter-importer scan
+
+Cookie (legacy/local fallback): from --sessionid/--csrftoken, OTTER_SESSIONID/OTTER_CSRFTOKEN, or ${"~/.otter-importer/cookie.json"}.
 Get it with scripts/dump_cookie.py or the browser devtools (otter.ai > Application > Cookies).
 `);
 }
