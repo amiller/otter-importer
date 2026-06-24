@@ -5,7 +5,7 @@
       "name": "otter-importer",
       "dependencies": {
         "fflate": "^0.8.2",
-        "oauth3-sdk": "file:../teleport/oauth3-sdk",
+        "oauth3-sdk": "file:../oauth3-sdk",
       },
       "devDependencies": {
         "@types/bun": "^1.1.0",
@@ -22,7 +22,7 @@
 
     "fflate": ["fflate@0.8.3", "", {}, "sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA=="],
 
-    "oauth3-sdk": ["oauth3-sdk@file:../teleport/oauth3-sdk", { "devDependencies": { "@types/node": "^26.0.0", "typescript": "5.5" } }],
+    "oauth3-sdk": ["oauth3-sdk@file:../oauth3-sdk", { "devDependencies": { "@types/node": "^26.0.0", "typescript": "5.5" } }],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
